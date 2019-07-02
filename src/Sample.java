@@ -8,7 +8,7 @@ import org.opensourcephysics.frames.DisplayFrame;
 public class Sample {
     public static void main(String[] args) {
         // Polyfun
-        Polynomial polynomial = new Polynomial(2, 3);
+        Polynomial polynomial = new Polynomial(2);
         System.out.print(polynomial.times(3));
 
         // OSP
