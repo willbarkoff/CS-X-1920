@@ -9,11 +9,13 @@ public class Sample {
     public static void main(String[] args) {
         // Polyfun
         Polynomial polynomial = new Polynomial(2);
-        System.out.print(polynomial.times(3));
+        System.out.println(polynomial.times(3));
+        double answer = polynomial.evaluateToNumber(2);
+        System.out.println(answer);
 
         // OSP
-        DisplayFrame displayFrame = new DisplayFrame("my frame");
-        displayFrame.setVisible(true);
+//        DisplayFrame displayFrame = new DisplayFrame("my frame");
+//        displayFrame.setVisible(true);
     }
 
     /**
