@@ -17,10 +17,14 @@ public class Sample {
 
         System.out.println("f(x) = " + fx);
         System.out.println("v(x) = " + vx);
+        System.out.println("f(x) * v(x) = " + fx.times(vx));
 
         System.out.println();
         System.out.println("f(2) = " + fx.evaluateWith(2));
-        System.out.println("f(x) x v(x) = " + fx.times(vx));
+
+        System.out.println();
+        System.out.println(vx.getCoefficientAtTerm(2));
+        System.out.println(vx.getCoefficientArray()[2]);
 
         /*
               Open Source Physics (OSP) Example
