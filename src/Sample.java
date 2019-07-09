@@ -1,26 +1,56 @@
 import org.dalton.polyfun.Polynomial;
 
-import org.opensourcephysics.frames.DisplayFrame;
+import org.opensourcephysics.frames.PlotFrame;
+
+import java.awt.*;
 
 /**
  * Sample class to show off polyfun, OSP and testing.
  */
 public class Sample {
     public static void main(String[] args) {
-        // Polyfun
-        Polynomial polynomial = new Polynomial(2);
-        System.out.println(polynomial.times(3));
-        double answer = polynomial.evaluateToNumber(2);
-        System.out.println(answer);
+        /*
+             Polyfun examples
+         */
+        Polynomial fx = new Polynomial(2);
+        Polynomial vx = new Polynomial(new double[]{1, 2, 3});
 
-        // OSP
-//        DisplayFrame displayFrame = new DisplayFrame("my frame");
-//        displayFrame.setVisible(true);
+        System.out.println("f(x) = " + fx);
+        System.out.println("v(x) = " + vx);
+
+        System.out.println();
+        System.out.println("f(2) = " + fx.evaluateWith(2));
+        System.out.println("f(x) x v(x) = " + fx.times(vx));
+
+        /*
+              Open Source Physics (OSP) Example
+         */
+        // Setup the graph
+        PlotFrame plotFrame = new PlotFrame("x", "y", "Example");
+        plotFrame.setSize(400, 400); // window size
+        plotFrame.setPreferredMinMax(0, 10, 0, 15); // x and y ranges
+        plotFrame.setConnected(true); // if you want to connect the dots
+        plotFrame.setDefaultCloseOperation(3);  // if you want closing the graph to end the program
+        plotFrame.setVisible(true); // need this to show the graph, it is false by default
+
+        // Data set 0 (red line)
+        plotFrame.setLineColor(0, Color.RED);
+        plotFrame.append(0, 1, 1);
+        plotFrame.append(0, 2, 2);
+        plotFrame.append(0, 3, 3);
+
+        // Data set 1 (green line)
+        plotFrame.setLineColor(1, Color.GREEN);
+        plotFrame.append(1, 1, 1);
+        plotFrame.append(1, 1.5, 2.25);
+        plotFrame.append(1, 2, 4);
+        plotFrame.append(1, 2.5, 6.25);
+        plotFrame.append(1, 3, 9);
+        plotFrame.append(1, 3.5, 12.25);
     }
 
     /**
-     * Sample method to show off how to write tests and how to comment (like this).
-     * Go to test/ folder to see how to test this method.
+     * Go to /test/SampleTest.java to see how to test this method with Junit.
      *
      * @param a first num to add
      * @param b second num to add
