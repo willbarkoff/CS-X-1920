@@ -2,15 +2,15 @@ import org.dalton.polyfun.Polynomial;
 
 import org.opensourcephysics.frames.PlotFrame;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
- * Sample class to show off polyfun, OSP and testing.
+ * GettingStarted class to show off Polynomials, Open Source Physics and JUnit test.
  */
-public class Sample {
+public class GettingStarted {
     public static void main(String[] args) {
         /*
-             Polyfun examples
+             Polynomial examples
          */
         Polynomial fx = new Polynomial(2);
         Polynomial vx = new Polynomial(new double[]{1, 2, 3});
@@ -54,7 +54,7 @@ public class Sample {
     }
 
     /**
-     * Go to /test/SampleTest.java to see how to test this method with Junit.
+     * Go to /test/GettingStartedAppTest.java to see how to test this method with Junit.
      *
      * @param a first num to add
      * @param b second num to add
