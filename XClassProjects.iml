@@ -11,5 +11,6 @@
     <orderEntry type="library" name="junit:junit:4.12" level="project" />
     <orderEntry type="library" name="osp-5.1.0" level="project" />
     <orderEntry type="library" name="polyfun-1.1.0" level="project" />
+    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
   </component>
 </module>
