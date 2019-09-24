@@ -18,17 +18,26 @@ object GettingStarted {
          */
         val fx = Polynomial(2)
         val vx = Polynomial(doubleArrayOf(1.0, 2.0, 3.0))
+        val gx = Polynomial(doubleArrayOf(4.0, 0.0, 0.0, 0.0, 5.0))
 
+        println("g(x) = $gx")
         println("f(x) = $fx")
         println("v(x) = $vx")
-        println("f(x) * v(x) = " + fx.times(vx))
+        println("f(x) * v(x) = " + fx * vx)
 
         println()
         println("f(2) = " + fx.evaluateWith(2.0))
+        println("g(2) = " + gx.evaluateWith(2.0))
+        println("f(x) + v(x) = " + (fx + vx))
 
         println()
         println(vx.getCoefficientAtTerm(2))
+        println(vx.getCoefficientAtTerm(1))
         println(vx.coefficientArray[2])
+
+        println()
+
+        vx.coefficientArray.forEach { println(it) }
 
         /*
               Open Source Physics (OSP) Example
@@ -43,31 +52,18 @@ object GettingStarted {
 
         // Data set 0 (red line)
         plotFrame.setLineColor(0, Color.RED)
-        plotFrame.append(0, 0.0, 0.0)
-        plotFrame.append(0, 1.0, 1.0)
-        plotFrame.append(0, 2.0, 2.0)
-        plotFrame.append(0, 3.0, 3.0)
+        for (i in 0..10) plotFrame.append(0, i.toDouble(), fx.evaluateWith(i.toDouble()))
+
 
         // Data set 1 (green line)
         plotFrame.setLineColor(1, Color.GREEN)
-        plotFrame.append(1, 0.0, 0.0)
-        plotFrame.append(1, 1.0, 1.0)
-        plotFrame.append(1, 1.5, 2.25)
-        plotFrame.append(1, 2.0, 4.0)
-        plotFrame.append(1, 2.5, 6.25)
-        plotFrame.append(1, 3.0, 9.0)
-        plotFrame.append(1, 3.5, 12.25)
+        for (i in 0..10) plotFrame.append(0, i.toDouble(), vx.evaluateWith(i.toDouble()))
 
         // Example of a Trail.
         val trail = Trail()
         trail.color = Color.ORANGE
         plotFrame.addDrawable(trail) // add the trail to the plot frame
-
-        // Add trail points.
-        trail.addPoint(0.0, 0.0)
-        trail.addPoint(4.0, 3.0)
-        trail.addPoint(8.0, 9.0)
-        trail.addPoint(16.0, 18.0)
+        for(i in 0..10) trail.addPoint(i.toDouble(), gx.evaluateWith(i.toDouble()))
     }
 
     /**
