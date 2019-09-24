@@ -1,4 +1,4 @@
-package gettingStarted
+package com.williambarkoff.csx.rustremoval
 
 import org.junit.Test
 

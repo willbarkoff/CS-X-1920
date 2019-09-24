@@ -1,4 +1,4 @@
-package com.williambarkoff.quadratics
+package com.williambarkoff.csx.quadratics
 
 import org.junit.Test
 import kotlin.test.assertEquals

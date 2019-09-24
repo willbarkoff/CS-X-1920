@@ -1,4 +1,4 @@
-package com.williambarkoff.quadratics
+package com.williambarkoff.csx.quadratics
 
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -9,7 +9,7 @@ class Quadratic(val a: Double, val b: Double, val c: Double) {
 
     val hasRealRoots: Boolean
         get() {
-            return discriminant >= 0;
+            return discriminant >= 0
         }
 
     val numberOfRoots: Int
