@@ -32,7 +32,7 @@ public class RandomWalkApp extends AbstractSimulation {
     }
 
 
-    private class MovingCircle extends Circle {
+    private static class MovingCircle extends Circle {
         Random gen = new Random();
 
         public void move() {

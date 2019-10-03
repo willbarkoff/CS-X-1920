@@ -70,7 +70,7 @@ public class SpiralTrailAnimation extends AbstractSimulation {
             }
         }
 
-
+        trail.setStroke(new BasicStroke(10));
         DrawableShape rect = DrawableShape.createRectangle(3.0, 3.0, 4.0, 4.0);
         plotFrame.addDrawable(rect);
 
