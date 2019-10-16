@@ -66,7 +66,6 @@ public class SpiralTrailAnimation extends AbstractSimulation {
                 circle.setX(i);
                 circle.setY(j);
                 plotFrame.addDrawable(circle);
-
             }
         }
 

@@ -99,7 +99,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.williambarkoff.csx.riemann</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">com.williambarkoff.csx.riemann.RightHandRuleTest</a></div>
 <h2 title="Class RightHandRule" class="title">Class RightHandRule</h2>
 </div>
 <div class="contentContainer">
@@ -107,10 +107,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="Riemann.html" title="class in com.williambarkoff.csx.riemann">com.williambarkoff.csx.riemann.Riemann</a></li>
+<li><a href="Riemann.html" title="class in com.williambarkoff.csx.riemann.RightHandRuleTest">com.williambarkoff.csx.riemann.RightHandRuleTest.Riemann</a></li>
 <li>
 <ul class="inheritance">
-<li>com.williambarkoff.csx.riemann.RightHandRule</li>
+<li>com.williambarkoff.csx.riemann.RightHandRuleTest.RightHandRule</li>
 </ul>
 </li>
 </ul>
@@ -121,7 +121,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <hr>
 <pre>public class <span class="typeNameLabel">RightHandRule</span>
-extends <a href="Riemann.html" title="class in com.williambarkoff.csx.riemann">Riemann</a></pre>
+extends <a href="Riemann.html" title="class in com.williambarkoff.csx.riemann.RightHandRuleTest">Riemann</a></pre>
 </li>
 </ul>
 </div>
@@ -194,10 +194,10 @@ extends <a href="Riemann.html" title="class in com.williambarkoff.csx.riemann">R
 </div>
 </div>
 <ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.com.williambarkoff.csx.riemann.Riemann">
+<li class="blockList"><a id="methods.inherited.from.class.com.williambarkoff.csx.riemann.RightHandRuleTest.Riemann">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;com.williambarkoff.csx.riemann.<a href="Riemann.html" title="class in com.williambarkoff.csx.riemann">Riemann</a></h3>
+<h3>Methods inherited from class&nbsp;com.williambarkoff.csx.riemann.RightHandRuleTest.<a href="Riemann.html" title="class in com.williambarkoff.csx.riemann.RightHandRuleTest">Riemann</a></h3>
 <code><a href="Riemann.html#calculateDeltaX(double,double,int)">calculateDeltaX</a>, <a href="Riemann.html#rs(org.dalton.polyfun.Polynomial,double,double,int)">rs</a>, <a href="Riemann.html#rsAcc(org.opensourcephysics.frames.PlotFrame,org.dalton.polyfun.Polynomial,int,double,double)">rsAcc</a>, <a href="Riemann.html#rsPlot(org.opensourcephysics.frames.PlotFrame,org.dalton.polyfun.Polynomial,int,double,double,double,int)">rsPlot</a></code></li>
 </ul>
 <ul class="blockList">
@@ -255,7 +255,7 @@ extends <a href="Riemann.html" title="class in com.williambarkoff.csx.riemann">R
 <div class="block">Approximates a slice of the (signed) area between the graph of a polynomial and the x-axis, over a given interval on the x-axis. The specific Riemann sum rule used in the calculation is defined by the subclass. This method should be used in <a href="Riemann.html#rs(org.dalton.polyfun.Polynomial,double,double,int)"><code>Riemann.rs(Polynomial, double, double, int)</code></a> to find the total area.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Riemann.html#slice(org.dalton.polyfun.Polynomial,double,double)">slice</a></code>&nbsp;in class&nbsp;<code><a href="Riemann.html" title="class in com.williambarkoff.csx.riemann">Riemann</a></code></dd>
+<dd><code><a href="Riemann.html#slice(org.dalton.polyfun.Polynomial,double,double)">slice</a></code>&nbsp;in class&nbsp;<code><a href="Riemann.html" title="class in com.williambarkoff.csx.riemann.RightHandRuleTest">Riemann</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>poly</code> - the polynomial whose area (over or under the x-axis), over the interval from sleft to sright, is to be calculated</dd>
 <dd><code>sleft</code> - the left hand endpoint of the interval</dd>
@@ -279,7 +279,7 @@ extends <a href="Riemann.html" title="class in com.williambarkoff.csx.riemann">R
 <div class="block">Plots a slice of the (signed) area between the graph of a polynomial and the x-axis, over a given interval on the x-axis. The specific Riemann sum rule used is defined by the subclass. This method should be used in <a href="Riemann.html#rsPlot(org.opensourcephysics.frames.PlotFrame,org.dalton.polyfun.Polynomial,int,double,double,double,int)"><code>Riemann.rsPlot​(org.opensourcephysics.frames.PlotFrame, org.dalton.polyfun.Polynomial, int, double, double, double, int)</code></a> to find the total area.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Riemann.html#slicePlot(org.opensourcephysics.frames.PlotFrame,org.dalton.polyfun.Polynomial,double,double)">slicePlot</a></code>&nbsp;in class&nbsp;<code><a href="Riemann.html" title="class in com.williambarkoff.csx.riemann">Riemann</a></code></dd>
+<dd><code><a href="Riemann.html#slicePlot(org.opensourcephysics.frames.PlotFrame,org.dalton.polyfun.Polynomial,double,double)">slicePlot</a></code>&nbsp;in class&nbsp;<code><a href="Riemann.html" title="class in com.williambarkoff.csx.riemann.RightHandRuleTest">Riemann</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>pframe</code> - the PlotFrame on which the slicePlot is to be drawn</dd>
 <dd><code>poly</code> - the polynomial whose area (over or under the x-axis), over the interval from sleft to sright, is to be drawn</dd>
