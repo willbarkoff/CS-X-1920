@@ -76,7 +76,7 @@ public class MovingBallApp extends AbstractSimulation {
 
     /**
      * Required main method, runs the simulation.
-     * @param args
+     * @param args arguments
      */
     public static void main(String[] args) {
         SimulationControl.createApp(new MovingBallApp());

@@ -6,6 +6,16 @@ import org.opensourcephysics.display.DrawableShape;
 import org.opensourcephysics.frames.PlotFrame;
 
 public class RandomRule extends AbstractRiemann {
+    /**
+     * Approximates the (signed) area of the slice using the random rule
+     *
+     * @param poly   the polynomial whose area (over or under the x-axis), over the interval from sleft to sright, is to
+     *               be calculated
+     * @param sleft  the left hand endpoint of the interval
+     * @param sright the right hand endpoint of the interval
+     *
+     * @return The area of the slice of the riemann sum using the left hand rule
+     */
     @Override
     public double slice(Polynomial poly, double sleft, double sright) {
         double rand = sleft + Math.random() * (sright - sleft);
@@ -15,6 +25,15 @@ public class RandomRule extends AbstractRiemann {
         return width * height;
     }
 
+    /**
+     * Plots a slice of the random rule on the specified pframe
+     *
+     * @param pframe the PlotFrame on which the slicePlot is to be drawn
+     * @param poly   the polynomial whose area (over or under the x-axis), over the interval from sleft to sright, is to
+     *               be drawn
+     * @param sleft  the left hand endpoint of the interval
+     * @param sright the right hand endpoint of the interval
+     */
     @Override
     public void slicePlot(PlotFrame pframe, Polynomial poly, double sleft, double sright) {
         double rand = sleft + Math.random() * (sright - sleft);

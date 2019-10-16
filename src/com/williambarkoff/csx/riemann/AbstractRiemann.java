@@ -52,14 +52,12 @@ public abstract class AbstractRiemann {
      *
      * @param pframe    the PlotFrame on which the polynomial and the Riemann sum are drawn
      * @param poly      the polynomial whose accumulation function is to be calculated
-     * @param index     the number associated to the collection of (x,y) coordinates that make up the dataset which,
-     *                  when plotted, is the graph of the accumulation function
      * @param precision the difference between the x-coordinates of two adjacent points on the graph of the accumulation
      *                  function
      * @param left      the left hand endpoint of the accumulation function
      * @param right     the right hand endpoint of the accumulation function
      */
-    public void rsAcc(PlotFrame pframe, Polynomial poly, int index, double precision, double left, double right) {
+    public void rsAcc(PlotFrame pframe, Polynomial poly, double precision, double left, double right) {
         Trail trail = new Trail();
         pframe.addDrawable(trail);
 
@@ -77,14 +75,12 @@ public abstract class AbstractRiemann {
      *
      * @param pframe       the PlotFrame on which the polynomial and the Riemann sum are drawn
      * @param poly         the polynomial whose Riemann sum is to be calculated
-     * @param index        the number associated to the collection of (x,y) coordinates that make up the dataset which,
-     *                     when plotted, is the graph of the accumulation function
      * @param precision    the difference between the x-coordinates of two adjacent points on the graph of the function
      * @param left         the left hand endpoint of the Riemann sum
      * @param right        the right hand endpoint of the Riemann sum
      * @param subintervals the number of subintervals into which to divide the interval
      */
-    public void rsPlot(PlotFrame pframe, Polynomial poly, int index, double precision, double left, double right, int subintervals) {
+    public void rsPlot(PlotFrame pframe, Polynomial poly, double precision, double left, double right, int subintervals) {
         Trail trail = new Trail();
         pframe.addDrawable(trail);
 
@@ -117,8 +113,7 @@ public abstract class AbstractRiemann {
     /**
      * Plots a slice of the (signed) area between the graph of a polynomial and the x-axis, over a given interval on the
      * x-axis. The specific Riemann sum rule used is defined by the subclass. This method should be used in {@link
-     * AbstractRiemann#rsPlot​(org.opensourcephysics.frames.PlotFrame, org.dalton.polyfun.Polynomial, int, double,
-     * double, double, int)} to find the total area.
+     * AbstractRiemann#rsPlot(PlotFrame, Polynomial, double, double, double, int)} to find the total area.
      *
      * @param pframe the PlotFrame on which the slicePlot is to be drawn
      * @param poly   the polynomial whose area (over or under the x-axis), over the interval from sleft to sright, is to
