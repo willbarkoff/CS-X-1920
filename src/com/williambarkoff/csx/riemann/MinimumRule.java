@@ -4,6 +4,11 @@ import org.dalton.polyfun.Polynomial;
 import org.jetbrains.annotations.NotNull;
 import org.opensourcephysics.frames.PlotFrame;
 
+/**
+ * RightHandRule approximates the Riemann sum at the minimum point in each subinterval.
+ *
+ * @author William Barkoff
+ */
 public class MinimumRule extends AbstractRiemann {
     /**
      * Approximates the (signed) area of the slice using the minimum rule

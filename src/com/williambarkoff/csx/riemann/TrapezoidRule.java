@@ -7,7 +7,7 @@ import org.opensourcephysics.frames.PlotFrame;
 import java.awt.*;
 
 /**
- * Trapezoid rule uses a trapezoidal area to calculate the Riemann sum
+ * Trapezoid rule uses a trapezoidal area to calculate the Riemann sum.
  *
  * @author William Barkoff
  */

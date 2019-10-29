@@ -6,6 +6,11 @@ import org.jetbrains.annotations.NotNull;
 import org.opensourcephysics.display.DrawableShape;
 import org.opensourcephysics.frames.PlotFrame;
 
+/**
+ * RightHandRule approximates the Riemann sum at the right of each subinterval.
+ *
+ * @author William Barkoff
+ */
 public class RightHandRule extends AbstractRiemann {
     /**
      * Approximates the (signed) area of the slice using the right hand rule

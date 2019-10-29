@@ -7,6 +7,11 @@ import org.opensourcephysics.frames.PlotFrame;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Riemann app is a runnable OpenSourcePhysics app that plots and computes multiple Riemann sums.
+ *
+ * @author William Barkoff
+ */
 public class RiemannApp {
     public static void main(String[] args) {
         Polynomial p = new Polynomial(new double[]{-2, 0, 1});

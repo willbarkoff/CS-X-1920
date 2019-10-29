@@ -6,6 +6,11 @@ import org.jetbrains.annotations.NotNull;
 import org.opensourcephysics.display.DrawableShape;
 import org.opensourcephysics.frames.PlotFrame;
 
+/**
+ * RandomRule approximates the Riemann sum at a random point on each subinterval.
+ *
+ * @author William Barkoff
+ */
 public class RandomRule extends AbstractRiemann {
     /**
      * Approximates the (signed) area of the slice using the random rule
