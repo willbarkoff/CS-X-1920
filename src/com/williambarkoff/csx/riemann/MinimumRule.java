@@ -1,6 +1,7 @@
 package com.williambarkoff.csx.riemann;
 
 import org.dalton.polyfun.Polynomial;
+import org.jetbrains.annotations.NotNull;
 import org.opensourcephysics.frames.PlotFrame;
 
 public class MinimumRule extends AbstractRiemann {
@@ -15,7 +16,7 @@ public class MinimumRule extends AbstractRiemann {
      * @return The area of the slice of the riemann sum using the left hand rule
      */
     @Override
-    public double slice(Polynomial poly, double sleft, double sright) {
+    public double slice(@NotNull Polynomial poly, double sleft, double sright) {
         if (poly.evaluateWith(sleft) < poly.evaluateWith(sright)) {
             return new LeftHandRule().slice(poly, sleft, sright);
         } else {
@@ -33,7 +34,7 @@ public class MinimumRule extends AbstractRiemann {
      * @param sright the right hand endpoint of the interval
      */
     @Override
-    public void slicePlot(PlotFrame pframe, Polynomial poly, double sleft, double sright) {
+    public void slicePlot(PlotFrame pframe, @NotNull Polynomial poly, double sleft, double sright) {
         if (poly.evaluateWith(sleft) < poly.evaluateWith(sright)) {
             new LeftHandRule().slicePlot(pframe, poly, sleft, sright);
         } else {

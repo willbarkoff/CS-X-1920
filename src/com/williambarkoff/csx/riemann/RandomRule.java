@@ -2,6 +2,7 @@ package com.williambarkoff.csx.riemann;
 
 import com.williambarkoff.csx.util.DrawableShapeUtils;
 import org.dalton.polyfun.Polynomial;
+import org.jetbrains.annotations.NotNull;
 import org.opensourcephysics.display.DrawableShape;
 import org.opensourcephysics.frames.PlotFrame;
 
@@ -17,7 +18,7 @@ public class RandomRule extends AbstractRiemann {
      * @return The area of the slice of the riemann sum using the left hand rule
      */
     @Override
-    public double slice(Polynomial poly, double sleft, double sright) {
+    public double slice(@NotNull Polynomial poly, double sleft, double sright) {
         double rand = sleft + Math.random() * (sright - sleft);
 
         double width = Math.abs(sleft - sright);
@@ -35,7 +36,7 @@ public class RandomRule extends AbstractRiemann {
      * @param sright the right hand endpoint of the interval
      */
     @Override
-    public void slicePlot(PlotFrame pframe, Polynomial poly, double sleft, double sright) {
+    public void slicePlot(@NotNull PlotFrame pframe, @NotNull Polynomial poly, double sleft, double sright) {
         double rand = sleft + Math.random() * (sright - sleft);
 
         DrawableShape rect = DrawableShapeUtils.createRectangle(sleft, 0, sright - sleft, poly.evaluateWith(rand));

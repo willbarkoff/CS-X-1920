@@ -1,88 +1,58 @@
 package com.williambarkoff.csx.riemann;
 
 import org.dalton.polyfun.Polynomial;
+import org.opensourcephysics.display.OSPLayout;
 import org.opensourcephysics.frames.PlotFrame;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class RiemannApp {
     public static void main(String[] args) {
         Polynomial p = new Polynomial(new double[]{-2, 0, 1});
-        System.out.println(p.toString());
+//        Polynomial p = new Function(Math::sin, "sin(x)");
+//        Polynomial p = new Function(x -> Math.sqrt(1 - Math.pow(x, 2)), "√1̅-̅X̅^̅2̅");
+//        System.out.println(p.toString());
 
+        double left = -1;
+        double right = 1;
+//        int subs = Integer.MAX_VALUE;
 
-        PlotFrame rhr = new PlotFrame("x", "f(x)", "Right Hand Rule");
-        rhr.setSize(400, 400); // window size
-        rhr.setPreferredMinMax(0, 10, 0, 15); // x and y ranges
-        rhr.setConnected(true); // if you want to connect the dots
-        rhr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // if you want closing the graph to end the program
-        rhr.setVisible(true); // need this to show the graph, it is false by default
+        int subs = 20;
 
-        new RightHandRule().rsPlot(rhr, p, 0.01, -3, 3, 10);
+        AbstractRiemann[] rules = new AbstractRiemann[]{
+                new LeftHandRule(),
+                new RightHandRule(),
+                new MidpointRule(),
+                new MaximumRule(),
+                new MinimumRule(),
+                new RandomRule(),
+                new TrapezoidRule()
+        };
 
-        PlotFrame lhr = new PlotFrame("x", "f(x)", "Left Hand Rule");
-        lhr.setSize(400, 400); // window size
-        lhr.setPreferredMinMax(0, 10, 0, 15); // x and y ranges
-        lhr.setConnected(true); // if you want to connect the dots
-        lhr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // if you want closing the graph to end the program
-        lhr.setVisible(true); // need this to show the graph, it is false by default
+        double sca = new LeftHandRule().rs(p, left, right, subs);
 
-        new LeftHandRule().rsPlot(lhr, p, 0.01, -3, 3, 10);
+        System.out.format("%32s", "semi-circle area=");
+        System.out.println(sca);
+        System.out.format("%32s", "π ≈ ");
+        System.out.println(sca * 2);
+        System.out.format("%32s", "π (NASA) = ");
+        System.out.println(Math.PI);
 
-        PlotFrame mr = new PlotFrame("x", "f(x)", "Midpoint Rule");
-        mr.setSize(400, 400); // window size
-        mr.setPreferredMinMax(0, 10, 0, 15); // x and y ranges
-        mr.setConnected(true); // if you want to connect the dots
-        mr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // if you want closing the graph to end the program
-        mr.setVisible(true); // need this to show the graph, it is false by default
+        double MPR = new RightHandRule().rs(p, left, right, subs);
+        System.out.println("MPR = " + MPR);
 
-        new MidpointRule().rsPlot(mr, p, 0.01, -3, 3, 10);
+        for (AbstractRiemann rule : rules) {
+            PlotFrame pframe = new PlotFrame("x", "f(x)", rule.getClass().getSimpleName());
+            pframe.setSize(400, 400); // window size
+            pframe.setPreferredMinMax(0, subs, 0, 15); // x and y ranges
+            pframe.setConnected(true); // if you want to connect the dots
+            pframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);  // if you want closing the graph to end the program
+            pframe.setVisible(true); // need this to show the graph, it is false by default
 
-        PlotFrame tr = new PlotFrame("x", "f(x)", "Trapezoidal Rule");
-        tr.setSize(400, 400); // window size
-        tr.setPreferredMinMax(0, 10, 0, 15); // x and y ranges
-        tr.setConnected(true); // if you want to connect the dots
-        tr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // if you want closing the graph to end the program
-        tr.setVisible(true); // need this to show the graph, it is false by default
-
-        new TrapezoidRule().rsPlot(tr, p, 0.02, -3, 3, 10);
-
-        PlotFrame mxr = new PlotFrame("x", "f(x)", "Maximum Rule");
-        mxr.setSize(400, 400); // window size
-        mxr.setPreferredMinMax(0, 10, 0, 15); // x and y ranges
-        mxr.setConnected(true); // if you want to connect the dots
-        mxr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // if you want closing the graph to end the program
-        mxr.setVisible(true); // need this to show the graph, it is false by default
-
-        new MaximumRule().rsPlot(mxr, p, 0.01, -3, 3, 10);
-
-        PlotFrame mnr = new PlotFrame("x", "f(x)", "Minimum Rule");
-        mnr.setSize(400, 400); // window size
-        mnr.setPreferredMinMax(0, 10, 0, 15); // x and y ranges
-        mnr.setConnected(true); // if you want to connect the dots
-        mnr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // if you want closing the graph to end the program
-        mnr.setVisible(true); // need this to show the graph, it is false by default
-
-        new MinimumRule().rsPlot(mnr, p, 0.01, -3, 3, 10);
-
-        PlotFrame rr = new PlotFrame("x", "f(x)", "Random Rule");
-        rr.setSize(400, 400); // window size
-        rr.setPreferredMinMax(0, 10, 0, 15); // x and y ranges
-        rr.setConnected(true); // if you want to connect the dots
-        rr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // if you want closing the graph to end the program
-        rr.setVisible(true); // need this to show the graph, it is false by default
-
-        new RandomRule().rsPlot(rr, p, 0.01, -3, 3, 10);
-
-//        PlotFrame acc = new PlotFrame("x", "f(x)", "Accumulation Function");
-//        acc.setSize(400, 400); // window size
-//        acc.setPreferredMinMax(0, 10, 0, 15); // x and y ranges
-//        acc.setConnected(true); // if you want to connect the dots
-//        acc.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // if you want closing the graph to end the program
-//        acc.setVisible(true); // need this to show the graph, it is false by default
-//
-//        new LeftHandRule().rsAcc(acc, p, 0.01, -10, 10);
-
-
+            rule.rsPlot(pframe, p, 0.01, left, right, subs);
+            pframe.add(new Label("f(x) = " + p.toString()), OSPLayout.PAGE_START);
+            pframe.add(new Label("Result: " + rule.rs(p, left, right, subs)), OSPLayout.PAGE_END);
+        }
     }
 }

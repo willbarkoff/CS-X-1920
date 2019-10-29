@@ -1,6 +1,7 @@
 package com.williambarkoff.csx.riemann;
 
 import org.dalton.polyfun.Polynomial;
+import org.jetbrains.annotations.NotNull;
 import org.opensourcephysics.display.Trail;
 import org.opensourcephysics.frames.PlotFrame;
 
@@ -39,7 +40,7 @@ public abstract class AbstractRiemann {
     public double rs(Polynomial poly, double left, double right, int subintervals) {
         double deltaX = this.calculateDeltaX(left, right, subintervals);
         double area = 0.0;
-        for (double i = left; i < right; i += deltaX) {
+        for (double i = left; i <= right; i += deltaX) {
             area += slice(poly, i, i + deltaX);
         }
         return area;
@@ -57,7 +58,7 @@ public abstract class AbstractRiemann {
      * @param left      the left hand endpoint of the accumulation function
      * @param right     the right hand endpoint of the accumulation function
      */
-    public void rsAcc(PlotFrame pframe, Polynomial poly, double precision, double left, double right) {
+    public void rsAcc(@NotNull PlotFrame pframe, Polynomial poly, double precision, double left, double right) {
         Trail trail = new Trail();
         pframe.addDrawable(trail);
 
@@ -80,7 +81,7 @@ public abstract class AbstractRiemann {
      * @param right        the right hand endpoint of the Riemann sum
      * @param subintervals the number of subintervals into which to divide the interval
      */
-    public void rsPlot(PlotFrame pframe, Polynomial poly, double precision, double left, double right, int subintervals) {
+    public void rsPlot(@NotNull PlotFrame pframe, Polynomial poly, double precision, double left, double right, int subintervals) {
         Trail trail = new Trail();
         pframe.addDrawable(trail);
 
