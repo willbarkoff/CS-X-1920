@@ -16,20 +16,21 @@ public class RiemannApp {
 
         Polynomial p = new Polynomial(pdef);
         double expected = -40;
+        double left = -10;
+        double right = 10;
 
 
 //        Polynomial p = new Function(Math::sin, "sin(x)");
         Polynomial circle = new Function(x -> Math.sqrt(1 - Math.pow(x, 2)), "√1̅-̅X̅^̅2̅");
 //        System.out.println(p.toString());
-        System.out.println("-------------------------------------------------------");
-        System.out.println("|" + StringUtils.center(p.toString(), 53) + "|");
-        System.out.println("-------------------------------------------------------");
-
-        double left = -10;
-        double right = 10;
 //        int subs = Integer.MAX_VALUE;
 
-        int subs = 20;
+        int subs = 10;
+        System.out.println("-------------------------------------------------------");
+        System.out.println("|" + StringUtils.center(p.toString(), 53) + "|");
+        System.out.println("|" + StringUtils.center("L: " + left + " R: " + right + " S: " + subs, 53) + "|");
+        System.out.println("-------------------------------------------------------");
+
 
         AbstractRiemann[] rules = new AbstractRiemann[]{
                 new LeftHandRule(),
