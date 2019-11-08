@@ -23,7 +23,7 @@ public abstract class AbstractRiemann {
      * @return Δx
      */
     public double calculateDeltaX(double left, double right, int subintervals) {
-        return Math.abs((right - left) / (double) subintervals);
+        return Math.abs(right - left) / subintervals;
     }
 
     /**
@@ -40,9 +40,12 @@ public abstract class AbstractRiemann {
     public double rs(Polynomial poly, double left, double right, int subintervals) {
         double deltaX = this.calculateDeltaX(left, right, subintervals);
         double area = 0.0;
-        for (double i = left; i <= right; i += deltaX) {
-            area += slice(poly, i, i + deltaX);
+        for (int i = 0; i < subintervals; i++) {
+            area += slice(poly, left + (i * deltaX), left + ((i + 1) * deltaX));
         }
+//        for (double i = left; i <= right; i += deltaX) {
+//            area += slice(poly, i, i + deltaX);
+//        }
         return area;
     }
 
@@ -62,10 +65,11 @@ public abstract class AbstractRiemann {
         Trail trail = new Trail();
         pframe.addDrawable(trail);
 
-        int j = 0;
+        double area = 0.0;
+
         for (double i = left; i <= right; i += precision) {
-            j++;
-            trail.addPoint(i, rs(poly, 0, right, j));
+            area += slice(poly, i, i + precision);
+            trail.addPoint(i, area);
         }
 
         pframe.setPreferredMinMax(left, right, trail.getYMin(), trail.getYMax());

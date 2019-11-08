@@ -1,11 +1,9 @@
 package com.williambarkoff.csx.riemann;
 
+import com.williambarkoff.csx.util.Function;
+import com.williambarkoff.csx.util.MathUtils;
+import com.williambarkoff.csx.util.StringUtils;
 import org.dalton.polyfun.Polynomial;
-import org.opensourcephysics.display.OSPLayout;
-import org.opensourcephysics.frames.PlotFrame;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * Riemann app is a runnable OpenSourcePhysics app that plots and computes multiple Riemann sums.
@@ -13,14 +11,22 @@ import java.awt.*;
  * @author William Barkoff
  */
 public class RiemannApp {
-    public static void main(String[] args) {
-        Polynomial p = new Polynomial(new double[]{-2, 0, 1});
-//        Polynomial p = new Function(Math::sin, "sin(x)");
-//        Polynomial p = new Function(x -> Math.sqrt(1 - Math.pow(x, 2)), "√1̅-̅X̅^̅2̅");
-//        System.out.println(p.toString());
+    public static void main(String[] args) throws InterruptedException {
+        double[] pdef = new double[]{-2, 7, 0, 1};
 
-        double left = -1;
-        double right = 1;
+        Polynomial p = new Polynomial(pdef);
+        double expected = -40;
+
+
+//        Polynomial p = new Function(Math::sin, "sin(x)");
+        Polynomial circle = new Function(x -> Math.sqrt(1 - Math.pow(x, 2)), "√1̅-̅X̅^̅2̅");
+//        System.out.println(p.toString());
+        System.out.println("-------------------------------------------------------");
+        System.out.println("|" + StringUtils.center(p.toString(), 53) + "|");
+        System.out.println("-------------------------------------------------------");
+
+        double left = -10;
+        double right = 10;
 //        int subs = Integer.MAX_VALUE;
 
         int subs = 20;
@@ -35,29 +41,40 @@ public class RiemannApp {
                 new TrapezoidRule()
         };
 
-        double sca = new LeftHandRule().rs(p, left, right, subs);
+        Thread[] threads = new Thread[rules.length];
+        RiemannWorker[] workers = new RiemannWorker[rules.length];
 
-        System.out.format("%32s", "semi-circle area=");
-        System.out.println(sca);
-        System.out.format("%32s", "π ≈ ");
-        System.out.println(sca * 2);
-        System.out.format("%32s", "π (NASA) = ");
-        System.out.println(Math.PI);
-
-        double MPR = new RightHandRule().rs(p, left, right, subs);
-        System.out.println("MPR = " + MPR);
-
-        for (AbstractRiemann rule : rules) {
-            PlotFrame pframe = new PlotFrame("x", "f(x)", rule.getClass().getSimpleName());
-            pframe.setSize(400, 400); // window size
-            pframe.setPreferredMinMax(0, subs, 0, 15); // x and y ranges
-            pframe.setConnected(true); // if you want to connect the dots
-            pframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);  // if you want closing the graph to end the program
-            pframe.setVisible(true); // need this to show the graph, it is false by default
-
-            rule.rsPlot(pframe, p, 0.01, left, right, subs);
-            pframe.add(new Label("f(x) = " + p.toString()), OSPLayout.PAGE_START);
-            pframe.add(new Label("Result: " + rule.rs(p, left, right, subs)), OSPLayout.PAGE_END);
+        for (int i = 0; i < rules.length; i++) {
+            RiemannWorker worker = new RiemannWorker(rules[i], subs, new Polynomial(pdef), left, right, expected);
+            Thread thread = new Thread(worker);
+            thread.start();
+            threads[i] = thread;
+            workers[i] = worker;
         }
+
+        for (Thread thread : threads) {
+            thread.join();
+        }
+
+        System.out.printf("| %-20s | %-13s   | %-4s  |\n", "RULE", "RESULT", "%ERR     ");
+        System.out.println("-------------------------------------------------------");
+        for (RiemannWorker worker : workers) {
+            double result = worker.getResult();
+            String ruleName = worker.getRule().getClass().getSimpleName();
+            double pctErr = MathUtils.PercentError(expected, result) * 100;
+            System.out.printf("| %-20s | %13.7f   | %8.2f%%  |\n", ruleName, result, pctErr);
+        }
+        System.out.println("-------------------------------------------------------");
+
+        double sca = new LeftHandRule().rs(circle, -1, 1, Integer.MAX_VALUE);
+        double pi = sca * 2;
+        System.out.println("\n\n");
+        System.out.println("-------------------------------------------------------");
+        System.out.println("|" + StringUtils.center("Pi Calculation", 53) + "|");
+        System.out.println("-------------------------------------------------------");
+        System.out.printf("| %-20s | %-13s   | %-4s | \n", "CALCULATION", "RESULT", "%ERR      ");
+        System.out.println("-------------------------------------------------------");
+        System.out.printf("| %-20s | %13.10f   | %8.2f%%  | \n", "π", pi, MathUtils.PercentError(Math.PI, pi) * 100.0);
+        System.out.println("-------------------------------------------------------");
     }
 }

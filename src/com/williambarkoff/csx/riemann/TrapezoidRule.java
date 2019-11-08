@@ -24,10 +24,10 @@ public class TrapezoidRule extends AbstractRiemann {
      */
     @Override
     public double slice(Polynomial poly, double sleft, double sright) {
-        double width = Math.abs(sleft - sright);
+        double width = sright - sleft;
         double h1 = poly.evaluateWith(sleft);
         double h2 = poly.evaluateWith(sright);
-        return (h1 + h2) * (sright - sleft / 2);
+        return (h1 + h2) * (width / 2);
     }
 
     /**

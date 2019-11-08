@@ -24,7 +24,7 @@ public class RightHandRule extends AbstractRiemann {
      */
     @Override
     public double slice(@NotNull Polynomial poly, double sleft, double sright) {
-        double width = Math.abs(sleft - sright);
+        double width = sright - sleft;
         double height = poly.evaluateWith(sright);
         return width * height;
     }

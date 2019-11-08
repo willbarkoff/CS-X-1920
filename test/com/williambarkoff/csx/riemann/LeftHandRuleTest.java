@@ -9,8 +9,8 @@ public class LeftHandRuleTest {
     @Test
     public void slice() {
         AbstractRiemann r = new LeftHandRule();
-        assertEquals(1, r.rs(new Polynomial(1), 0, 1, 1), 0);
-        assertEquals(0.625, r.rs(new Polynomial(2), 0, 1, 2), 0);
-        assertEquals(315.4296875, r.rs(new Polynomial(2), 5, 10, 8), 0.01);
+        Polynomial p = new Polynomial(new double[]{0, 0, 1});
+        assertEquals(0, r.slice(p, 0.0, 1.0), 0);
+        assertEquals(1, r.slice(p, -1.0, 0), 0);
     }
 }

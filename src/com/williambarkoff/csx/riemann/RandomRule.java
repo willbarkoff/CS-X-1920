@@ -12,6 +12,11 @@ import org.opensourcephysics.frames.PlotFrame;
  * @author William Barkoff
  */
 public class RandomRule extends AbstractRiemann {
+
+    public RandomRule() {
+        super();
+    }
+
     /**
      * Approximates the (signed) area of the slice using the random rule
      *
