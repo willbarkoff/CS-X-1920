@@ -1,6 +1,6 @@
 package com.williambarkoff.csx.util;
 
-public abstract class StringUtils {
+public abstract class StringFun {
     public static String center(String s, int size) {
         return center(s, size, ' ');
     }

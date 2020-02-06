@@ -2,7 +2,7 @@ package com.williambarkoff.csx.util;
 
 import org.opensourcephysics.display.DrawableShape;
 
-public class DrawableShapeUtils {
+public class ShapeFun {
     public static DrawableShape createRectangle(double x, double y, double width, double height) {
         if (height < 0) {
             height = -height;

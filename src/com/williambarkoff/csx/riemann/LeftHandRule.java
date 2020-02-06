@@ -1,6 +1,6 @@
 package com.williambarkoff.csx.riemann;
 
-import com.williambarkoff.csx.util.DrawableShapeUtils;
+import com.williambarkoff.csx.util.ShapeFun;
 import org.dalton.polyfun.Polynomial;
 import org.jetbrains.annotations.NotNull;
 import org.opensourcephysics.display.DrawableShape;
@@ -40,7 +40,7 @@ public class LeftHandRule extends AbstractRiemann {
      */
     @Override
     public void slicePlot(@NotNull PlotFrame pframe, @NotNull Polynomial poly, double sleft, double sright) {
-        DrawableShape rect = DrawableShapeUtils.createRectangle(sleft, 0, sright - sleft, poly.evaluateWith(sleft));
+        DrawableShape rect = ShapeFun.createRectangle(sleft, 0, sright - sleft, poly.evaluateWith(sleft));
         pframe.addDrawable(rect);
     }
 }

@@ -1,8 +1,8 @@
 package com.williambarkoff.csx.riemann;
 
 import com.williambarkoff.csx.util.Function;
-import com.williambarkoff.csx.util.MathUtils;
-import com.williambarkoff.csx.util.StringUtils;
+import com.williambarkoff.csx.util.MathFun;
+import com.williambarkoff.csx.util.StringFun;
 import org.dalton.polyfun.Polynomial;
 
 /**
@@ -27,8 +27,8 @@ public class RiemannApp {
 
         int subs = 10;
         System.out.println("-------------------------------------------------------");
-        System.out.println("|" + StringUtils.center(p.toString(), 53) + "|");
-        System.out.println("|" + StringUtils.center("L: " + left + " R: " + right + " S: " + subs, 53) + "|");
+        System.out.println("|" + StringFun.center(p.toString(), 53) + "|");
+        System.out.println("|" + StringFun.center("L: " + left + " R: " + right + " S: " + subs, 53) + "|");
         System.out.println("-------------------------------------------------------");
 
 
@@ -62,7 +62,7 @@ public class RiemannApp {
         for (RiemannWorker worker : workers) {
             double result = worker.getResult();
             String ruleName = worker.getRule().getClass().getSimpleName();
-            double pctErr = MathUtils.PercentError(expected, result) * 100;
+            double pctErr = MathFun.PercentError(expected, result) * 100;
             System.out.printf("| %-20s | %13.7f   | %8.2f%%  |\n", ruleName, result, pctErr);
         }
         System.out.println("-------------------------------------------------------");
@@ -71,11 +71,11 @@ public class RiemannApp {
         double pi = sca * 2;
         System.out.println("\n\n");
         System.out.println("-------------------------------------------------------");
-        System.out.println("|" + StringUtils.center("Pi Calculation", 53) + "|");
+        System.out.println("|" + StringFun.center("Pi Calculation", 53) + "|");
         System.out.println("-------------------------------------------------------");
         System.out.printf("| %-20s | %-13s   | %-4s | \n", "CALCULATION", "RESULT", "%ERR      ");
         System.out.println("-------------------------------------------------------");
-        System.out.printf("| %-20s | %13.10f   | %8.2f%%  | \n", "π", pi, MathUtils.PercentError(Math.PI, pi) * 100.0);
+        System.out.printf("| %-20s | %13.10f   | %8.2f%%  | \n", "π", pi, MathFun.PercentError(Math.PI, pi) * 100.0);
         System.out.println("-------------------------------------------------------");
     }
 }
