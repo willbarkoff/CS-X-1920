@@ -12,12 +12,12 @@ import org.dalton.polyfun.Polynomial;
  */
 public class RiemannApp {
     public static void main(String[] args) throws InterruptedException {
-        double[] pdef = new double[]{-2, 7, 0, 1};
+        double[] pdef = new double[]{0, 0, 1};
 
         Polynomial p = new Polynomial(pdef);
         double expected = -40;
-        double left = -10;
-        double right = 10;
+        double left = 0;
+        double right = 6;
 
 
 //        Polynomial p = new Function(Math::sin, "sin(x)");
@@ -25,7 +25,7 @@ public class RiemannApp {
 //        System.out.println(p.toString());
 //        int subs = Integer.MAX_VALUE;
 
-        int subs = 10;
+        int subs = 3;
         System.out.println("-------------------------------------------------------");
         System.out.println("|" + StringFun.center(p.toString(), 53) + "|");
         System.out.println("|" + StringFun.center("L: " + left + " R: " + right + " S: " + subs, 53) + "|");
